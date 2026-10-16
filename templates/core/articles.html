@@ -1,0 +1,52 @@
+{% extends "core/base.html" %}
+
+{% block title %}وبلاگ آموزشی | نیواد{% endblock %}
+
+{% block content %}
+
+<!-- Page heading -->
+<section class="page-head">
+    <div class="container">
+        <div class="eyebrow">NIVAD / BLOG</div>
+        <h1>آموزش و <span>دانش بدنسازی</span></h1>
+        <p>مطالب کاربردی درباره تمرین، تغذیه و سبک زندگی ورزشی.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <div class="blog-grid">
+            {% for a in articles %}
+                <article class="blog-card">
+
+                    <div class="blog-img">
+                        {% if a.image %}
+                            <img src="{{ a.image.url }}" alt="{{ a.title }}" loading="lazy">
+                        {% else %}
+                            <span>NIVAD / BLOG</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="card-body">
+                        <small>{{ a.published_at|date:"Y/m/d" }}</small>
+                        <h3>{{ a.title }}</h3>
+                        <p>{{ a.excerpt }}</p>
+
+                        <a href="{{ a.get_absolute_url }}">
+                            مطالعه مقاله →
+                        </a>
+                    </div>
+
+                </article>
+            {% empty %}
+                <div class="empty">
+                    مقاله‌ای منتشر نشده است.
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Django
+staticfiles/
+
+# Local secrets
+.env
+
+# Uploaded media
+# Keep this line commented if you want uploaded images committed to Git.
+# media/
+
+# IDE
+.vscode/
+.idea/

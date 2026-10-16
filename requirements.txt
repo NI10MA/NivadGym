@@ -1,0 +1,11 @@
+# Core framework
+Django==5.2.7
+
+# MySQL driver
+mysqlclient>=2.2.7,<3.0
+
+# ImageField support
+Pillow>=11.3.0
+
+# Read database/settings variables from .env
+python-dotenv>=1.1,<2.0

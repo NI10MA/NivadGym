@@ -1,0 +1,91 @@
+{% load static %}
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}باشگاه نیواد | NIVAD GYM{% endblock %}</title>
+    <meta name="description" content="باشگاه نیواد؛ تجهیزات حرفه‌ای، مربیان تخصصی و محتوای آموزشی بدنسازی.">
+
+    <!-- Main website stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- =========================
+         HEADER / NAVIGATION
+    ========================== -->
+    <header class="site-header">
+        <div class="container nav-wrap">
+
+            <a class="logo" href="{% url 'home' %}" aria-label="NIVAD GYM">
+                <span>NIVAD</span>
+                <small>GYM</small>
+            </a>
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                type="button"
+                aria-label="باز کردن منو"
+                aria-controls="mainNav"
+            >
+                ☰
+            </button>
+
+            <nav id="mainNav">
+                <a href="{% url 'home' %}">خانه</a>
+                <a href="{% url 'equipment_list' %}">دستگاه‌ها</a>
+                <a href="{% url 'trainer_list' %}">مربیان</a>
+                <a href="{% url 'catalog_list' %}">کاتالوگ‌ها</a>
+                <a href="{% url 'article_list' %}">وبلاگ</a>
+                <a class="nav-cta" href="#contact">تماس با ما</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer class="footer" id="contact">
+        <div class="container footer-grid">
+
+            <div>
+                <a class="logo" href="{% url 'home' %}">
+                    <span>NIVAD</span>
+                    <small>GYM</small>
+                </a>
+                <p>باشگاه نیواد؛ محیطی حرفه‌ای برای ساختن نسخه قوی‌تر خودت.</p>
+            </div>
+
+            <div>
+                <h4>دسترسی سریع</h4>
+                <a href="{% url 'equipment_list' %}">دستگاه‌های باشگاه</a>
+                <a href="{% url 'trainer_list' %}">مربیان</a>
+                <a href="{% url 'article_list' %}">آموزش‌ها</a>
+            </div>
+
+            <div>
+                <h4>ارتباط</h4>
+                <p>📍 همدان، آدرس باشگاه</p>
+                <p>☎ ۰۸۱-۳۲۵xxxx</p>
+                <p>✉ info@nivadgym.ir</p>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © ۱۴۰۵ باشگاه نیواد — تمامی حقوق محفوظ است.
+        </div>
+    </footer>
+
+    <!-- Main website JavaScript -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

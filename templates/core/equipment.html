@@ -1,0 +1,57 @@
+{% extends "core/base.html" %}
+
+{% block title %}دستگاه‌های باشگاه | نیواد{% endblock %}
+
+{% block content %}
+
+<!-- Page heading -->
+<section class="page-head">
+    <div class="container">
+        <div class="eyebrow">NIVAD / EQUIPMENT</div>
+        <h1>تجهیزات <span>حرفه‌ای</span></h1>
+        <p>مشخصات دستگاه‌ها و کاتالوگ هر بخش.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <div class="cards">
+            {% for item in equipment %}
+                <article class="card equipment-card">
+
+                    <div class="visual">
+                        {% if item.image %}
+                            <img
+                                src="{{ item.image.url }}"
+                                alt="{{ item.name }}"
+                                loading="lazy"
+                            >
+                        {% else %}
+                            <div class="machine" aria-hidden="true">▰</div>
+                        {% endif %}
+
+                        <span>{{ item.category }}</span>
+                    </div>
+
+                    <div class="card-body">
+                        <h3>{{ item.name }}</h3>
+                        <p>{{ item.description|truncatechars:130 }}</p>
+
+                        <a href="{{ item.get_absolute_url }}">
+                            مشخصات و کاتالوگ →
+                        </a>
+                    </div>
+
+                </article>
+            {% empty %}
+                <div class="empty">
+                    هنوز دستگاهی ثبت نشده است.
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

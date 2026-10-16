@@ -1,0 +1,51 @@
+{% extends "core/base.html" %}
+
+{% block title %}{{ trainer.name }} | نیواد{% endblock %}
+
+{% block content %}
+
+<!-- Trainer title -->
+<section class="page-head">
+    <div class="container">
+        <div class="eyebrow">NIVAD / TRAINER PROFILE</div>
+        <h1>{{ trainer.name }}</h1>
+        <p>{{ trainer.specialty }}</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container detail-grid">
+
+        <!-- Trainer image -->
+        <div class="detail-visual trainer-profile">
+            <div class="trainer-avatar huge">
+                {% if trainer.image %}
+                    <img src="{{ trainer.image.url }}" alt="{{ trainer.name }}">
+                {% else %}
+                    {{ trainer.name|slice:":1" }}
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Trainer information -->
+        <div class="detail-copy">
+            <h2>معرفی مربی</h2>
+
+            <p>{{ trainer.bio }}</p>
+
+            <p>
+                <strong>سابقه:</strong>
+                {{ trainer.experience }} سال
+            </p>
+
+            {% if trainer.catalog_file %}
+                <a class="btn primary" href="{{ trainer.catalog_file.url }}">
+                    دانلود کاتالوگ مربی ←
+                </a>
+            {% endif %}
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "core/base.html" %}
+
+{% block title %}کاتالوگ‌ها | نیواد{% endblock %}
+
+{% block content %}
+
+<!-- Page heading -->
+<section class="page-head">
+    <div class="container">
+        <div class="eyebrow">NIVAD / DOWNLOAD CENTER</div>
+        <h1>مرکز <span>کاتالوگ‌ها</span></h1>
+        <p>کاتالوگ تجهیزات، برنامه‌ها و خدمات نیواد.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container catalog-list">
+
+        {% for c in catalogs %}
+            <article class="catalog">
+
+                <div class="catalog-icon">PDF</div>
+
+                <div>
+                    <h3>{{ c.title }}</h3>
+                    <p>{{ c.description }}</p>
+                    <small>{{ c.category }}</small>
+                </div>
+
+                {% if c.file %}
+                    <a class="btn ghost" href="{{ c.file.url }}">
+                        دانلود ←
+                    </a>
+                {% endif %}
+
+            </article>
+        {% empty %}
+            <div class="empty">
+                کاتالوگی ثبت نشده است.
+            </div>
+        {% endfor %}
+
+    </div>
+</section>
+
+{% endblock %}

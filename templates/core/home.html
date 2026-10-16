@@ -1,0 +1,254 @@
+{% extends "core/base.html" %}
+
+{% block title %}باشگاه نیواد | NIVAD GYM{% endblock %}
+
+{% block content %}
+
+<!-- =========================
+     HERO
+========================== -->
+<section class="hero">
+    <div class="container hero-grid">
+
+        <div class="hero-copy">
+            <div class="eyebrow">NIVAD GYM / FITNESS</div>
+
+            <h1>
+                قوی‌تر از <span>دیروز</span><br>
+                شروع کن.
+            </h1>
+
+            <p>
+                تمرین هدفمند، تجهیزات حرفه‌ای و مربیانی که مسیر پیشرفتت را می‌شناسند.
+            </p>
+
+            <div class="actions">
+                <a class="btn primary" href="{% url 'trainer_list' %}">
+                    مربیان ما ←
+                </a>
+                <a class="btn ghost" href="{% url 'equipment_list' %}">
+                    مشاهده تجهیزات
+                </a>
+            </div>
+
+            <div class="stats">
+                <div>
+                    <b>+۱۵۰۰</b>
+                    <span>عضو فعال</span>
+                </div>
+                <div>
+                    <b>+۲۵</b>
+                    <span>دستگاه حرفه‌ای</span>
+                </div>
+                <div>
+                    <b>+۸</b>
+                    <span>مربی تخصصی</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative hero artwork -->
+        <div class="hero-art" aria-hidden="true">
+            <div class="ring r1"></div>
+            <div class="ring r2"></div>
+
+            <div class="hero-card">
+                <span>01</span>
+                <strong>DISCIPLINE</strong>
+                <small>CONSISTENCY · POWER · RESULTS</small>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =========================
+     EQUIPMENT
+========================== -->
+<section class="section">
+    <div class="container">
+
+        <div class="section-head">
+            <div>
+                <div class="eyebrow">EQUIPMENT</div>
+                <h2>دستگاه‌های <span>نیواد</span></h2>
+            </div>
+
+            <a href="{% url 'equipment_list' %}" class="more">
+                همه دستگاه‌ها ←
+            </a>
+        </div>
+
+        <div class="cards">
+            {% for item in equipment %}
+                <article class="card equipment-card">
+
+                    <div class="visual">
+                        {% if item.image %}
+                            <img
+                                src="{{ item.image.url }}"
+                                alt="{{ item.name }}"
+                                loading="lazy"
+                            >
+                        {% else %}
+                            <div class="machine" aria-hidden="true">▰</div>
+                        {% endif %}
+
+                        <span>{{ item.category }}</span>
+                    </div>
+
+                    <div class="card-body">
+                        <h3>{{ item.name }}</h3>
+
+                        <p>
+                            {{ item.description|truncatechars:100 }}
+                        </p>
+
+                        <a href="{{ item.get_absolute_url }}">
+                            مشاهده مشخصات →
+                        </a>
+                    </div>
+
+                </article>
+            {% empty %}
+                <div class="empty">
+                    دستگاه‌ها از پنل مدیریت اضافه می‌شوند.
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =========================
+     TRAINERS
+========================== -->
+<section class="section dark-section">
+    <div class="container">
+
+        <div class="section-head">
+            <div>
+                <div class="eyebrow">EXPERT TEAM</div>
+                <h2>مربیان <span>نیواد</span></h2>
+            </div>
+
+            <a href="{% url 'trainer_list' %}" class="more">
+                مشاهده همه ←
+            </a>
+        </div>
+
+        <div class="trainer-grid">
+            {% for t in trainers %}
+                <article class="trainer">
+
+                    <div class="trainer-avatar">
+                        {% if t.image %}
+                            <img
+                                src="{{ t.image.url }}"
+                                alt="{{ t.name }}"
+                                loading="lazy"
+                            >
+                        {% else %}
+                            {{ t.name|slice:":1" }}
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        <h3>{{ t.name }}</h3>
+                        <p>{{ t.specialty }}</p>
+                        <a href="{{ t.get_absolute_url }}">
+                            پروفایل مربی →
+                        </a>
+                    </div>
+
+                </article>
+            {% empty %}
+                <div class="empty">
+                    هنوز مربی ثبت نشده است.
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =========================
+     BLOG
+========================== -->
+<section class="section">
+    <div class="container">
+
+        <div class="section-head">
+            <div>
+                <div class="eyebrow">KNOWLEDGE</div>
+                <h2>آخرین مطالب <span>آموزشی</span></h2>
+            </div>
+
+            <a href="{% url 'article_list' %}" class="more">
+                وبلاگ نیواد ←
+            </a>
+        </div>
+
+        <div class="blog-grid">
+            {% for a in articles %}
+                <article class="blog-card">
+
+                    <div class="blog-img">
+                        {% if a.image %}
+                            <img
+                                src="{{ a.image.url }}"
+                                alt="{{ a.title }}"
+                                loading="lazy"
+                            >
+                        {% else %}
+                            <span>NIVAD / BLOG</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="card-body">
+                        <small>{{ a.published_at|date:"Y/m/d" }}</small>
+                        <h3>{{ a.title }}</h3>
+                        <p>{{ a.excerpt|truncatechars:120 }}</p>
+
+                        <a href="{{ a.get_absolute_url }}">
+                            ادامه مطلب →
+                        </a>
+                    </div>
+
+                </article>
+            {% empty %}
+                <div class="empty">
+                    اولین مقاله را از پنل مدیریت منتشر کنید.
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =========================
+     CALL TO ACTION
+========================== -->
+<section class="cta">
+    <div class="container cta-inner">
+
+        <div>
+            <div class="eyebrow">READY?</div>
+            <h2>وقتشه تمرین رو <span>جدی‌تر</span> کنی.</h2>
+            <p>
+                برای آشنایی با شرایط عضویت و برنامه‌های تمرینی با ما در ارتباط باش.
+            </p>
+        </div>
+
+        <a class="btn primary" href="#contact">
+            ارتباط با نیواد ←
+        </a>
+
+    </div>
+</section>
+
+{% endblock %}

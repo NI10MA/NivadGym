@@ -1,0 +1,50 @@
+{% extends "core/base.html" %}
+
+{% block title %}{{ item.name }} | نیواد{% endblock %}
+
+{% block content %}
+
+<!-- Equipment title -->
+<section class="page-head">
+    <div class="container">
+        <div class="eyebrow">NIVAD / EQUIPMENT</div>
+        <h1>{{ item.name }}</h1>
+        <p>{{ item.category }}</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container detail-grid">
+
+        <!-- Equipment image -->
+        <div class="detail-visual">
+            {% if item.image %}
+                <img src="{{ item.image.url }}" alt="{{ item.name }}">
+            {% else %}
+                <div class="machine big" aria-hidden="true">▰</div>
+            {% endif %}
+        </div>
+
+        <!-- Equipment information -->
+        <div class="detail-copy">
+            <h2>درباره دستگاه</h2>
+            <p>{{ item.description }}</p>
+
+            {% if item.features %}
+                <h3>ویژگی‌ها</h3>
+                <div class="features">
+                    {{ item.features|linebreaks }}
+                </div>
+            {% endif %}
+
+            {% if item.catalog_file %}
+                <a class="btn primary" href="{{ item.catalog_file.url }}">
+                    دانلود کاتالوگ ←
+                </a>
+            {% endif %}
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
